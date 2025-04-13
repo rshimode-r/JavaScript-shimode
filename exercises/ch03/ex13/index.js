@@ -8,10 +8,10 @@ export function eq(a, b) {
   }
   // 文字列と Date の比較
   if (a instanceof Date && typeof b === "string") {
-    return a.getTime() === new Date(b).getTime();
+    return a.valueOf() === new Date(b).valueOf();
   }
   if (typeof a === "string" && b instanceof Date) {
-    return new Date(a).getTime() === b.getTime();
+    return new Date(a).valueOf() === b.valueOf();
   }
   if (a instanceof Date || b instanceof Date) {
     return false;
