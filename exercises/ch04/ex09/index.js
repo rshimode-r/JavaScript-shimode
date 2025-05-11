@@ -20,8 +20,8 @@ console.log(
 
 //結果
 // undefiend: undefined
-// undefiend: object
-// undefiend: object
-// undefiend: number
-// undefiend: number
-// undefiend: function
+// null: object
+// オブジェクト: object
+// NaN: number
+// 数値: number
+// 関数: function

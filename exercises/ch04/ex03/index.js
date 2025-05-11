@@ -7,7 +7,7 @@ export function sub(x, y) {
 
 function add(x, y) {
   let z;
-  while (y | 0) {
+  while (y) {
     z = (x & y) << 1;
     x ^= y;
     y = z;
