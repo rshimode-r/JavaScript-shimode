@@ -1,6 +1,6 @@
 import { OmitOddNumberOfObject } from "./index.js";
 
-describe("OmitEvenNumberOfObject", () => {
+describe("OmitOddNumberOfObject", () => {
   it("偶数の値を持つプロパティだけを残した新しいオブジェクトを返す", () => {
     const o = { x: 1, y: 2, z: 3 };
     const expected = { y: 2 };

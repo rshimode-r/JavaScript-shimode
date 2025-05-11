@@ -44,3 +44,10 @@ resize2({ maxWidth: 3, maxHeight: 4 });
 resize();
 resize1();
 resize2();
+
+// { maxWidth: 3, maxHeight: 4 }
+// { maxWidth: 3, maxHeight: 4 }
+// { maxWidth: 3, maxHeight: 4 }
+// { maxWidth: 600, maxHeight: 480 }
+// { maxWidth: 600, maxHeight: 480 }
+// { maxWidth: 600, maxHeight: 480 }
