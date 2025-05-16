@@ -7,3 +7,4 @@ console.log(ricoh);
 // 削除前 : 5
 // 削除後 : 5
 // [ 'r', 'i', 'c', <1 empty item>, 'h' ]
+//文字列と連結させるとr,i,c,,h

@@ -65,4 +65,3 @@ export function ConvertEscapeUseSwitch(stringValue) {
   }
   return result;
 }
-console.log(ConvertEscapeUseSwitch("aaa\baaa"));
