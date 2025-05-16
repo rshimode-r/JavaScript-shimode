@@ -1,5 +1,5 @@
 import { ConvertEscapeUseIfElse, ConvertEscapeUseSwitch } from "./index.js";
-
+//テーブルまとめた方が良い
 describe("ConvertEscapeUseIfElse", () => {
   test.each([
     ["aaa\\0aaa", "aaa\0aaa", "aaa\\0aaa"],
@@ -29,8 +29,8 @@ describe("ConvertEscapeUseSwitch", () => {
     ["aaa\\raaa", "aaa\raaa", "aaa\\raaa"],
     // prettier-ignore
     ['aaa\\"aaa', 'aaa\"aaa', 'aaa\\"aaa'],
-    ["aaa\\'aaa", "aaa\'aaa", "aaa\\'aaa"],
     // prettier-ignore
+    ["aaa\\'aaa", "aaa\'aaa", "aaa\\'aaa"],
   ])("%s に対応する文字を渡すと %s を返す", (label, inputChar, expected) => {
     expect(ConvertEscapeUseSwitch(inputChar)).toBe(expected);
   });

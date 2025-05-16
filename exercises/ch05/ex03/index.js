@@ -1,3 +1,4 @@
+// elseに任せるのではなく全パターン書いた方が変更があったときに安心
 export function check31DaysMonthIfElse(month) {
   if (
     month === "Jan" ||
@@ -11,7 +12,7 @@ export function check31DaysMonthIfElse(month) {
     return true;
   else return false;
 }
-
+// defaultに任せるのではなく全パターン書いた方が変更があったときに安心
 export function check31DaysMonthSwitch(month) {
   switch (month) {
     case "Jan":

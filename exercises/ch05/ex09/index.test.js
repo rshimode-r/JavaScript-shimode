@@ -19,7 +19,7 @@ describe("jsonParse", () => {
     expect(jsonParse("123")).toEqual({ success: true, data: 123 });
     expect(jsonParse("true")).toEqual({ success: true, data: true });
   });
-
+  // errorの文字列でテストするのは良くない。
   it("無効なJSON文字列を渡した場合、success: false になり、エラーメッセージが含まれる", () => {
     const data = "{name: Alice}";
     const result = jsonParse(data);

@@ -14,3 +14,5 @@ debugger文で指定された最初のブレークポイントまで実行され
 
 〇参照  
 https://nodejs.org/api/debugger.html (Node.js v23.11.0 ドキュメント)
+
+- replで変数の値をチェックできるモードに入る
