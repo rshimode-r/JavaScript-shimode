@@ -5,14 +5,15 @@ export function assign(target, ...sources) {
   if (typeof target !== "object") target = Object(target);
 
   for (const source of sources) {
-    if (source === null || source === undefined || typeof source !== "object")
-      continue;
+    if (source === null || typeof source !== "object") continue;
     // p155 ownKeysは全てのプロパティ名の配列を返す
     const keys = Reflect.ownKeys(source);
     for (const key of keys) {
       // (参照)https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor
-      const sourcePropDefinition = Object.getOwnPropertyDescriptor(source, key);
-      Object.defineProperty(target, key, sourcePropDefinition);
+      const descriptor = Object.getOwnPropertyDescriptor(source, key);
+      if (descriptor && descriptor.enumerable) {
+        target[key] = source[key];
+      }
     }
   }
   return target;
