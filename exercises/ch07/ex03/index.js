@@ -20,6 +20,7 @@ export function reverse(array) {
   if (!Array.isArray(array)) {
     throw new Error("配列を渡してください");
   }
+  //unshiftでもよかった
   return array.reduce((acc, val) => [val, ...acc], []);
 }
 

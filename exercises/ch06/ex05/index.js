@@ -29,3 +29,5 @@ for (const key in newObj) console.log(key + " : " + newObj[key]);
 // 2 : new
 // abc : new
 // def : new
+
+//数値は小さいもの順、文字列は追加された順、最後にsymbolが追加された淳

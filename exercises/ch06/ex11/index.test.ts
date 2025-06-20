@@ -1,5 +1,7 @@
 import { polarCoordinatObj } from "./index.ts";
 
+// このテストはオブジェクトそのものを変更しているので、テストケース間で隔離されていない。
+// コンストラクタ関数を作るのがもっともよい。
 describe("polarCoordinatObj", () => {
   //各テストケースでrとthetaを初期化する
   beforeEach(() => {

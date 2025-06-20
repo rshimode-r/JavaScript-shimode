@@ -75,7 +75,7 @@ describe("unshift", () => {
     expect(baseArray).toStrictEqual([]);
   });
 });
-
+// undefiendの時に最後に送られているかを確認するべきだった
 describe("sort", () => {
   it("元の配列を変更せず、昇順にソートされた新しい配列を返す", () => {
     const baseArray = [3, 1, 4, 2];

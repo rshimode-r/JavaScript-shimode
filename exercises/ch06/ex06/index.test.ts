@@ -1,6 +1,7 @@
 import { getAllProperties } from "./index.ts";
 
 describe("getAllProperties", () => {
+  // メモ:継承の継承も列挙できているかテストするべき
   it("getAllProperties関数はオブジェクトのすべての独自プロパティ（列挙不可、プロパティ名が `Symbol` のものを含む）および列挙可能な継承プロパティのプロパティ名の配列を返す", () => {
     const proto = {};
     Object.defineProperty(proto, "protoEnumerableProp", {
