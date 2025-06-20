@@ -17,6 +17,7 @@ console.log(
 console.log(
   "2. クラスAの`chemistry`の平均点 : " +
     data.reduce(
+      //fillterでクラスを絞り込める
       (sum, value) => (value.class === "A" ? sum + value.chemistry : sum),
       0
     ) /

@@ -7,9 +7,12 @@ function fizzbuzz(n) {
 }
 
 function sumOfSquaredDifference(f, g) {
-  return f
-    .map((fValue, fIndex) => (fValue - g[fIndex]) ** 2)
-    .reduce((sum, sqdiff) => sum + sqdiff, 0);
+  return (
+    f
+      //reduceでまとめられた
+      .map((fValue, fIndex) => (fValue - g[fIndex]) ** 2)
+      .reduce((sum, sqdiff) => sum + sqdiff, 0)
+  );
 }
 
 function sumOfEvensIsLargerThan42(array) {

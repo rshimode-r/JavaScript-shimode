@@ -50,7 +50,6 @@ console.log(object1);
 //     allTrue: 100,
 //     writableFalse: 2,
 //     configurableFalse: 100,
-//     writeFalse: 100
 //   }
 
 //プロパティの削除

@@ -16,6 +16,7 @@ export const polarCoordinatObj = {
   set y(value: number) {
     if (Number.isNaN(value)) throw new TypeError("Invalid value for y: NaN");
     const x = this.x;
+    //ユークリッド距離 : Math.hypotの方がシンプル
     this.r = Math.sqrt(x * x + value * value);
     this.theta = Math.atan2(value, x);
   },
