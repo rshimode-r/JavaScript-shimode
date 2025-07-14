@@ -1,4 +1,4 @@
-import { C } from "./index.js"; // ts でも可
+import { C } from "./index.ts"; // ts でも可
 
 test("", () => {
   const c = new C();
