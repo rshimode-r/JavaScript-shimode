@@ -2,6 +2,7 @@
 export const function1 = (n: number, c: string): string[] => {
   const resultArray = [];
   for (let i = 0; i < n; i++) {
+    // console.count→XXX:count数　みたいな出力できる
     console.log(c);
     resultArray.push(c);
   }

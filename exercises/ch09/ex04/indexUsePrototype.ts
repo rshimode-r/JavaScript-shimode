@@ -22,6 +22,7 @@ export function MagicWarrior(this: IMagicWarrior, atk: number, mgc: number) {
   if (isNaN(mgc) || mgc < 0) {
     throw new Error("mgcは0以上の値のみサポートします");
   }
+  //https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/call
   Warrior.call(this, atk);
   this.mgc = mgc;
 }

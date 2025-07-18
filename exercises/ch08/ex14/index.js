@@ -3,6 +3,7 @@ export function any(...funcs) {
     throw new Error("関数以外の引数をサポートしておりません");
   }
   return function (value) {
+    // applyでthisを渡す方が良い
     return funcs.some((func) => func(value));
   };
 }
