@@ -33,6 +33,7 @@ describe("PositiveNumber", () => {
   });
 
   it("外部からxに直接アクセスできない", () => {
+    // numの全プロパティをチェックする方が自然？
     const num = PositiveNumber(10);
     expect((num as any).x).toBeUndefined();
   });

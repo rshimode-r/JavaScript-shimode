@@ -1,3 +1,4 @@
+// 再帰しかやってなかった。
 export function pow(b: number, n: number): number {
   if (!Number.isInteger(n) || n < 0)
     throw new Error("負や小数などの整数以外はサポートしません。");

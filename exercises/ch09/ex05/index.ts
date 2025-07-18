@@ -6,3 +6,5 @@ export function instanceOf(object: object, constructor: Function): boolean {
   }
   return false;
 }
+
+//(追記)https://qiita.com/howdy39/items/35729490b024ca295d6c

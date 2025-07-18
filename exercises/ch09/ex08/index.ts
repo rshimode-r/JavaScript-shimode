@@ -154,3 +154,5 @@ export class SnoozingState implements AlarmState {
     return "soundAlarm";
   }
 }
+
+//(追記)状態遷移で指定されていないイベントは単純にnoneを返すべきか、異常としてエラーを返すかは設計次第

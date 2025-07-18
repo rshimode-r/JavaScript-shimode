@@ -4,7 +4,11 @@
 末尾再帰であれば、呼び出し元の情報がそのまま呼び出し元の結果になる。そのため、呼び出し元のスタックフレームを削除して呼び出し先のスタックフレームに置き換えればよい。このようにしてスタックオーバーフローが生じないように最適化されている。  
 (参照 : https://qiita.com/pebblip/items/cf8d3230969b2f6b3132)
 
+(追記)https://douglasmoura.dev/en-US/understanding-tail-call-optimization-with-javascript
+
 ## 2. JavaScript で末尾再帰最適化を実装している処理系を答えなさい。利用できる環境があれば、実際に以下の URL を表示・実行してエラーが発生しないことを確認しなさい。
 
 JavaScriptでは公式に最適化されていない（2025現在）
 (参照 : https://qiita.com/CRUD5th/items/47385797e50e77753afa)
+
+(追記)safariは実装されてるらしい（v10~11）

@@ -1,4 +1,5 @@
 export class Warrior {
+  // 外からatkを書き換えられるのはマズい...
   atk: number;
   constructor(atk: number) {
     if (isNaN(atk) || atk < 0) {
