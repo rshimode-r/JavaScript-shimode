@@ -1,4 +1,4 @@
-import { detectFileType } from "./index.js";
+import { detectFileType } from "./index.ts";
 
 // see: https://en.wikipedia.org/wiki/List_of_file_signatures
 
