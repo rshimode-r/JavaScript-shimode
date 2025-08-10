@@ -86,31 +86,54 @@ export function match(pat, s) {
 // seq2 の可変長引数版
 export function seq(...pats) {
   // HINT: seq(p1, p2, p3, p4) = seq2(seq2(seq2(p1, p2), p3), p4)
-  throw new Error("実装してね");
+  if (pats.length === 0) {
+    return (str, pos, k) => k(str, pos);
+  }
+  return pats.reduce((acc, pat) => seq2(acc, pat));
 }
 
 // alt2 の可変長引数版
 export function alt(...pats) {
   // HINT: alt(p1, p2, p3, p4) =  alt2(alt2(alt2(p1, p2), p3), p4)
-  throw new Error("実装してね");
+  if (pats.length === 0) {
+    // 選択肢が無い場合は常に失敗
+    return (str, pos, k) => false;
+  }
+  return pats.reduce((acc, pat) => alt2(acc, pat));
 }
 
-// 任意の1文字にマッチ
+// 任意の1文字にマッチ(何でもいいから1文字)
 export function dot() {
   // HINT: quote の実装を参考にすると良い
-  throw new Error("実装してね");
+  return (str, pos, k) => {
+    if (pos < str.length) {
+      return k(str, pos + 1);
+    }
+    return false;
+  };
 }
 
 // [...] に対応 (例: [abc] は charFrom("abc"))
+// pos番目がa,b,cのどれかならOK
 export function charFrom(s) {
   // HINT: quote の実装を参考にすると良い
-  throw new Error("実装してね");
+  return (str, pos, k) => {
+    if (pos < str.length && s.includes(str[pos])) {
+      return k(str, pos + 1);
+    }
+    return false;
+  };
 }
 
 // [^...] に対応
 export function charNotFrom(s) {
   // HINT: quote の実装を参考にすると良い
-  throw new Error("実装してね");
+  return (str, pos, k) => {
+    if (pos < str.length && !s.includes(str[pos])) {
+      return k(str, pos + 1);
+    }
+    return false;
+  };
 }
 
 // 繰り返し (min 回数以上 max 回数以下)
@@ -118,7 +141,24 @@ export function repeat(pat, min = 0, max = Infinity) {
   // HINT: 再帰を上手く使うこと
   // パターン P の繰り返し `P{min,max}` は min > 0 の時 `(P)(P{min-1,max-1})` と分解できる
   // seq2, alt2 を上手く使うと良い
-  throw new Error("実装してね");
+  if (min > 0) {
+    return seq2(
+      pat,
+      repeat(pat, min - 1, max === Infinity ? Infinity : max - 1)
+    );
+  }
+  // minが0の時
+  return alt2(
+    (str, pos, k) => k(str, pos), //成功かチェック
+    seq2(pat, (nstr, npos, k) => {
+      if (max <= 0) return false;
+      return repeat(pat, 0, max === Infinity ? Infinity : max - 1)(
+        nstr,
+        npos,
+        k
+      );
+    })
+  );
 }
 
 // 正規表現 /([Jj]ava([Ss]cript)?) is fun/ は以下
