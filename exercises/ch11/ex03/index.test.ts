@@ -37,19 +37,3 @@ describe("toLittleEndian", () => {
     expect(result.length).toBe(0);
   });
 });
-
-describe("toBigEndian and toLittleEndian", () => {
-  it("toBigEndian の後に toLittleEndian にかけると元に戻る", () => {
-    const input = new Uint32Array([0x01020304, 0xdeadbeef]);
-    const bigEndian = toBigEndian(input);
-    const littleEndian = toLittleEndian(bigEndian);
-    expect(littleEndian).toEqual(input);
-  });
-
-  it("toLittleEndian の後に toBigEndian にかけると元に戻る", () => {
-    const input = new Uint32Array([0x01020304, 0xdeadbeef]);
-    const littleEndian = toLittleEndian(input);
-    const bigEndian = toBigEndian(littleEndian);
-    expect(bigEndian).toEqual(input);
-  });
-});

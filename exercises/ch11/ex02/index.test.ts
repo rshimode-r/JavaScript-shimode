@@ -1,7 +1,8 @@
 import { cache } from "./index.ts";
+import { jest } from "@jest/globals";
 
 describe("cache", () => {
-  let slowFn: jest.Mock<number, [object]>;
+  let slowFn: jest.MockedFunction<(obj: object) => number>;
   let cachedSlowFn: (obj: object) => number;
 
   beforeEach(() => {
