@@ -1,7 +1,7 @@
 ### CommonJS と ES Module 以外の JavaScript のモジュール方式名
 
 - IIFE
-- AMD(Asynchronous Module Definition)
+- AMD(Asynchronous Module Definition) : ブラウザ環境を想定したモジュール
 - UMD
 - System.register
 
