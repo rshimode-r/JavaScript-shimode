@@ -26,7 +26,7 @@ describe("retryWithExponentialBackoff", () => {
 
     retryWithExponentialBackoff(func, 2, callback);
 
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(1000); //時間を進める
     await Promise.resolve();
 
     expect(callback).toHaveBeenCalledWith(false);

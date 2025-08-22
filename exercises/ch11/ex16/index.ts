@@ -5,6 +5,7 @@ export function retryWithExponentialBackoff(
 ) {
   (async () => {
     for (let i = 0; i < maxRetry; i++) {
+      // `func` の呼び出しは非同期に行われる　を満たせていない？
       const result = func();
       if (result) {
         callback(true);

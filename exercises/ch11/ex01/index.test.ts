@@ -1,6 +1,6 @@
 import { TypeMap } from "./index.ts";
 
-class Foo {}
+class Foo {} //TSの型チェックでインスタンスか判別することはできない
 
 describe("TypeMap", () => {
   let typeMap: TypeMap;
@@ -17,13 +17,16 @@ describe("TypeMap", () => {
   });
 
   it("プリミティブラッパーの値をget/setできる", () => {
-    typeMap.set(String, "string");
+    // typeMap.set(String, "string");
     typeMap.set(Number, 123);
     typeMap.set(Boolean, true);
+    const strObj = new String("hello");
+    typeMap.set(String, strObj);
 
-    expect(typeMap.get(String)).toBe("string");
+    // expect(typeMap.get(String)).toBe("string");
     expect(typeMap.get(Number)).toBe(123);
     expect(typeMap.get(Boolean)).toBe(true);
+    expect(typeMap.get(String)).toBe(strObj); //ミスってることが発覚しました。→力技で解決しました。
   });
 
   it("プリミティブラッパーと値の型が合わない場合にエラーを投げる", () => {

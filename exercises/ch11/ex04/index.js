@@ -1,5 +1,5 @@
 // これから (N, K) と (K, M) の行列の乗算を行う (この値は色々変更して試すこと)
-const [N, K, M] = [100, 200, 300];
+const [N, K, M] = [10, 10000, 10];
 
 // 配列版: (N, K) の行列を要素数 N * K の1次元配列で表現する ((i, j) は array[K * i + j] で参照)
 const lhsA = Array(N * K)
@@ -30,9 +30,9 @@ function arrayMultiply() {
 }
 
 // 型付き配列版 (Float64Array 以外の型も試してみると良い)
-const lhsB = new Uint8Array(N * K).fill(0.0).map((_, i) => lhsA[i]);
-const rhsB = new Uint8Array(K * M).fill(0.0).map((_, i) => rhsA[i]);
-const resultB = new Uint8Array(N * M).fill(0.0);
+const lhsB = new Float64Array(N * K).fill(0.0).map((_, i) => lhsA[i]);
+const rhsB = new Float64Array(K * M).fill(0.0).map((_, i) => rhsA[i]);
+const resultB = new Float64Array(N * M).fill(0.0);
 
 function typedArrayMultiply() {
   resultB.fill(0.0);

@@ -40,10 +40,11 @@ export function getWeekdayName(dateStr: string, locale: string): string {
     throw new Error("日付はYYYY-MM-DD形式でお願いします。");
 
   const date = new Date(dateStr);
+  //getTimeは無効な値ならNaNを返す
   if (isNaN(date.getTime())) {
     throw new Error("有効な日付を指定してください。");
   }
-
+  //(参考)https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
   return date.toLocaleDateString(locale, { weekday: "long" });
 }
 
@@ -51,9 +52,10 @@ export function getFirstDayOfLastMonth(): Date {
   const now = new Date();
   const oneDayMs = 24 * 60 * 60 * 1000;
 
+  //なんでsetDateで(0)を入れなかったのだろうか...→そのあと日付などを調整
   // 今月 1 日 0 時 0 分 0 秒
   const firstDayOfThisMonthTime =
-    now.getTime() - (now.getDate() - 1) * oneDayMs;
+    now.getTime() - (now.getDate() - 1) * oneDayMs; //今月の1日にする
   const firstDayOfThisMonth = new Date(firstDayOfThisMonthTime);
   firstDayOfThisMonth.setHours(0, 0, 0, 0);
 

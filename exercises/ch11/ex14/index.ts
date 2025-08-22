@@ -8,6 +8,7 @@ export function sortJapanese(arr: string[]): string[] {
 }
 
 export function toJapaneseDateString(date: Date): string {
+  //和暦用
   const formatted = new Intl.DateTimeFormat("ja-JP-u-ca-japanese", {
     era: "long",
     year: "numeric",
@@ -15,6 +16,7 @@ export function toJapaneseDateString(date: Date): string {
     day: "numeric",
   }).format(date);
   // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+  // スラッシュで区切られる　"昭和64/1/7"
   return formatted.replace(
     /^(\D+)(\d+)\/(\d+)\/(\d+)$/,
     (_, era, year, month, day) => {
@@ -22,3 +24,4 @@ export function toJapaneseDateString(date: Date): string {
     }
   );
 }
+// dataStyle:longで/区切りにはならないらしい
