@@ -9,7 +9,7 @@ import {
   errX,
   errY,
 } from "../wait.js";
-i4();
+i3();
 async function i1() {
   // NOTE: any で1つ Promise が解決された時に他の Promise はどうなるだろうか
   let v = 0;

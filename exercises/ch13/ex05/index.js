@@ -1,35 +1,23 @@
 import { wait } from "../wait.js";
-
+g1();
 function g1() {
   // TODO: then のネストを無くしなさい
   return wait(1000)
-    .then(() => {
-      console.log("A");
-      return wait(2000);
-    })
-    .then(() => {
-      console.log("B");
-      return wait(3000);
-    })
-    .then(() => {
-      console.log("C");
-    });
+    .then(() => console.log("A"))
+    .then(() => wait(2000))
+    .then(() => console.log("B"))
+    .then(() => wait(3000))
+    .then(() => console.log("C"));
 }
 
 async function g2() {
   // TODO: new Promise を使わないように書き換えなさい
   return wait(1000)
-    .then(() => {
-      console.log("A");
-      return wait(2000);
-    })
-    .then(() => {
-      console.log("B");
-      return wait(3000);
-    })
-    .then(() => {
-      console.log("C");
-    });
+    .then(() => console.log("A"))
+    .then(() => wait(2000))
+    .then(() => console.log("B"))
+    .then(() => wait(3000))
+    .then(() => console.log("C"));
 }
 
 function g3() {

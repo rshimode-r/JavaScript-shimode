@@ -1,6 +1,6 @@
 // https://github.com/YoshikiShibata/jpltest/blob/master/jpl/ch14/ex10/ThreadPoolTest.java
 
-import { PromisePool } from "./index.js";
+import { PromisePool } from "./index.ts";
 
 const wait = (msec) => new Promise((resolve) => setTimeout(resolve, msec));
 

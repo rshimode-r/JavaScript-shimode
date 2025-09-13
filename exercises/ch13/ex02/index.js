@@ -1,25 +1,14 @@
-function wait(msec) {
-  return new Promise((resolve) => setTimeout(resolve, msec));
-}
-// 0, 1, 2, 3 秒待つ
-const wait0 = () => wait(0);
-const wait1 = () => wait(1000);
-const wait2 = () => wait(2000);
-const wait3 = () => wait(3000);
-
-// ログ出力
-const log = (v) => console.log(v);
-const logA = (v) => console.log("A");
-const logB = (v) => console.log("B");
-const logC = (v) => console.log("C");
-
-// 例外
-const errX = () => {
-  throw new Error("X");
-};
-const errY = () => {
-  throw new Error("Y");
-};
+import {
+  wait,
+  wait1,
+  wait2,
+  log,
+  logA,
+  logB,
+  logC,
+  errX,
+  errY,
+} from "../wait.js";
 
 function f3() {
   // NOTE: then のコールバック内の例外は try/catch でキャッチできるだろうか
@@ -123,4 +112,4 @@ function f12() {
   }).catch((e) => log(e.message));
 }
 
-f12();
+f10();

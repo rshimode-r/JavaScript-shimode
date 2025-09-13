@@ -43,47 +43,102 @@ function* counterGen(max) {
 
 // ここから動作確認
 
-const iter = counterIter(5); //(出力)counterIter
-const gen = counterGen(5); //(出力)何も出力しない
+const iter = counterIter(5);
+const gen = counterGen(5);
+// counterIter
 
-iter.next(); //(出力)counterIter: next
-gen.next(); //(出力)counterGen \n  counterGen: next
+iter.next();
+//counterIter: next
+gen.next();
+// counterGen
+// counterGen: next
 
-iter.return(); //(出力)counterIter: return: undefined
-gen.return(); //(出力)counterGen: finally
+iter.return();
+// counterIter: return: undefined
+gen.return();
+// counterGen: finally
 
 for (let i of counterIter(3)) {
-  //(出力)counterIter: Symbol.iterator
-  //(出力)counterIter: next
   console.log("i is ", i);
-  if (i === 2) break; //(出力)counterIter: return: undefined
 }
+// counterIter
+// counterIter: Symbol.iterator
+// counterIter: next
+// i is  1
+// counterIter: next
+// i is  2
+// counterIter: next
+// i is  3
+// counterIter: next
 
 for (let i of counterGen(3)) {
-  //(出力)counterGen
-  //(出力)counterGen: next
   console.log("i is ", i);
-  if (i === 2) break; //(出力)counterGen: finally
 }
+// counterGen
+// counterGen: next
+// i is  1
+// counterGen: next
+// i is  2
+// counterGen: next
+// i is  3
+// counterGen: finally
+
+for (let i of counterIter(3)) {
+  console.log("i is ", i);
+  if (i === 2) break;
+}
+// counterIter
+// counterIter: Symbol.iterator
+// counterIter: next
+// i is  1
+// counterIter: next
+// i is  2
+// counterIter: return: undefined
+
+for (let i of counterGen(3)) {
+  console.log("i is ", i);
+  if (i === 2) break;
+}
+// counterGen
+// counterGen: next
+// i is  1
+// counterGen: next
+// i is  2
+// counterGen: finally
 
 try {
   for (let i of counterIter(3)) {
     console.log("i is", i);
     if (i === 2) {
-      throw "iter error!"; //(出力)counterIter: return: undefined
+      throw "iter error!";
     }
   }
 } catch (e) {
   console.log("caught:", e);
 }
+// counterIter
+// counterIter: Symbol.iterator
+// counterIter: next
+// i is 1
+// counterIter: next
+// i is 2
+// counterIter: return: undefined
+// caught: iter error!
 
 try {
   for (let i of counterGen(3)) {
     console.log("i is", i);
     if (i === 2) {
-      throw "gen error!"; //(出力)counterGen: finally
+      throw "gen error!";
     }
   }
 } catch (e) {
   console.log("caught:", e);
 }
+// counterGen
+// counterGen: next
+// i is 1
+// counterGen: next
+// i is 2
+// counterGen: finally
+// caught: gen error!

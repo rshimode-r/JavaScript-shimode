@@ -11,7 +11,7 @@ export async function retryWithExponentialBackoff(
         return true;
       }
     } catch (_) {
-      // funcの返り値が失敗した場合もリトライ
+      // funcが失敗した場合もリトライ
     }
 
     if (i !== maxRetry - 1) {

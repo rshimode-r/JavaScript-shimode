@@ -3,8 +3,8 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import * as fs from "fs";
 
-const __filename = fileURLToPath(import.meta.url); //ファイルの絶対パス
-const __dirname = dirname(__filename); //ファイルがあるディレクトリの絶対パス
+const __filename = fileURLToPath(import.meta.url); //現在のファイルの絶対パス
+const __dirname = dirname(__filename); //現在のファイルがあるディレクトリの絶対パス
 
 describe("readLines", () => {
   it("全ての行を正しく読み込める", () => {
@@ -23,7 +23,7 @@ describe("readLines", () => {
     for (const line of iter) {
       break;
     }
-
+    //break後も書き込みできるか検証
     expect(() => {
       fs.writeFileSync(breakErrorFile, "break後も書き込みできる");
     }).not.toThrow();
@@ -41,6 +41,7 @@ describe("readLines", () => {
       }
     } catch (e) {}
     expect(() => {
+      //例外スロー後も書き込みできるか検証
       fs.writeFileSync(throwErrorFile, "例外スロー後も書き込みできる");
     }).not.toThrow();
 

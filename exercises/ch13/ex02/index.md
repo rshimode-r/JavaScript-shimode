@@ -9,7 +9,7 @@ A
 throw new Error("X");
 ```
 
-説明 :Promiseのcatch,finallyメソッドではないため、try-catchで非同期処理の例外を捕まえられない。そのため、finally無いのligCが即座に実行され、そのあとlogA,errXが実行されて終了する。
+説明 :Promiseのcatch,finallyメソッドではないため、try-catchで非同期処理の例外を捕まえられない。そのため、finally内のlogCが即座に実行され、そのあとlogA,errXが実行されて終了する。
 
 ## f4
 
@@ -31,8 +31,8 @@ throw new Error("X");
 
 ## f7
 
-予想 : 2秒経過後に、1秒計測後、A、が出力、Bが出力、Cが出力となる。
-回答 : 開始から1秒後にAが出力、開始から2秒後にBとCが出力される。
+予想 : 開始から1秒後にAが出力、開始から2秒後にBとCが出力される。
+回答 : 同上
 説明 :解決済みのPrimiseは、既に解決しているため時間を待つことは無い。
 
 ## f8
