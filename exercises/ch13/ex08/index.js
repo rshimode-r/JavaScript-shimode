@@ -1,5 +1,5 @@
-import { join } from "node:path";
 import * as fsPromises from "node:fs/promises";
+import { join } from "path";
 
 export async function fetchFirstFileSize(path) {
   const files = await fsPromises.readdir(path);

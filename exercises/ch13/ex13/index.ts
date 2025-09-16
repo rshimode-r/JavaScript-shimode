@@ -1,4 +1,4 @@
-import * as fs from "fs/promises";
+import * as fsPromises from "node:fs/promises";
 import * as path from "path";
 
 type WalkData = {
@@ -8,11 +8,11 @@ type WalkData = {
 
 export async function* walk(rootPath: string): AsyncGenerator<WalkData> {
   // 指定されたディクトリ内のファイル/ディレクトリを取得
-  const entries = await fs.readdir(rootPath);
+  const entries = await fsPromises.readdir(rootPath);
 
   for (const entry of entries) {
     const fullPath = path.join(rootPath, entry);
-    const stat = await fs.stat(fullPath); //指定したファイルやディレクトリの情報を取得
+    const stat = await fsPromises.stat(fullPath); //指定したファイルやディレクトリの情報を取得
 
     if (stat.isDirectory()) {
       yield { path: fullPath, isDirectory: true };

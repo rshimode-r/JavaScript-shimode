@@ -1,11 +1,17 @@
-import { readdir, stat } from "fs/promises";
+import * as fsPromises from "node:fs/promises";
 import { join } from "path";
 
-export async function fetchSumOfFileSizes(path) {
-  const files = await readdir(path);
-  const statsPromises = files.map((file) => stat(join(path, file)));
-  const statsArray = await Promise.all(statsPromises);
-  const total = statsArray.reduce((acc, stats) => acc + stats.size, 0);
-
-  return total;
+export function fetchSumOfFileSizes(path) {
+  return fsPromises.readdir(path).then((files) => {
+    let total = 0;
+    // すべてのstat()をPromise配列で取得
+    const statPromises = files.map((file) => fsPromises.stat(join(path, file)));
+    // 全部のstatが終わったらサイズを合計
+    return Promise.all(statPromises).then((statsArray) => {
+      statsArray.forEach((stats) => {
+        total += stats.size;
+      });
+      return total;
+    });
+  });
 }
