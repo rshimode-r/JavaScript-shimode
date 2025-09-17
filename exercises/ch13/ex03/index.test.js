@@ -60,7 +60,7 @@ describe("promisifyReaddir", () => {
 
   it("存在しないディレクトリはエラーになる", () => {
     return promisifyReaddir("/invalid/path").catch((err) => {
-      expect(err.constructor.name).toBeInstanceOf(Error);
+      expect(err.constructor.name).toBe("Error");
     });
   });
 });
