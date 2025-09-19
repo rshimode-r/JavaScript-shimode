@@ -56,7 +56,7 @@ throw new Error("X");
 
 予想 : Xが出力される。
 回答 : 同上
-説明 :new Promise 内の throw は .catch でキャッチされる。
+説明 :new Promise 内の throw は自動的にrejectに変換される。そのため .catch でキャッチされる。
 
 ## f12
 

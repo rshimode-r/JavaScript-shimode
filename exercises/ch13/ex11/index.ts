@@ -7,13 +7,14 @@ export async function retryWithExponentialBackoff(
     try {
       const result = await func();
       if (result) {
+        // callback要らない？
         callback(true);
         return true;
       }
     } catch (_) {
       // funcが失敗した場合もリトライ
     }
-
+    // catchの中の方が題意に合ってる？
     if (i !== maxRetry - 1) {
       await new Promise((r) => setTimeout(r, 1000 * 2 ** i));
     }

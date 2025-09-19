@@ -36,7 +36,7 @@ function g3() {
   return fetchUser()
     .then((user) => {
       return fetchUserFriends(user).then((friends) => [user, friends]);
-    })
+    }) //ネストしてもよい
     .then(([user, friends]) => {
       console.log(`${user.name} has ${friends.length} friends!`);
     });

@@ -4,6 +4,7 @@
 - jQuery Deferred は jQuery 独自の非同期処理管理オブジェクトで、Promise と似た仕組みを持っている。
 - ES6以前の動作環境ではコールバックをネストして書くか、`jQuery Deferred`を使用する必要がある。(Promiseが使えない)
 - 引数の関数を、Deferredオブジェクトが「解決」されたときに呼び出す関数に追加する`deferred.done()`や引数の関数を、Deferredオブジェクトが「拒否」されたときに呼び出す関数に追加する`deferred.fail()`がある。
+  finalyに相当するalwaysもある。
 
 ## 参考
 

@@ -1,6 +1,7 @@
 import * as fsPromises from "node:fs/promises";
 import { join } from "path";
 
+// エラーをラップするなら、try-catch、そのままでいいなら要らない
 export function fetchSumOfFileSizes(path) {
   return fsPromises.readdir(path).then((files) => {
     let total = 0;

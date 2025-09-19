@@ -116,6 +116,7 @@ try {
 } catch (e) {
   console.log("caught:", e);
 }
+// throw()は呼ばれない
 // counterIter
 // counterIter: Symbol.iterator
 // counterIter: next

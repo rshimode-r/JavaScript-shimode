@@ -6,6 +6,7 @@ type WalkData = {
   isDirectory: boolean;
 };
 
+// 入力値がディレクトリ前提になっている
 export async function* walk(rootPath: string): AsyncGenerator<WalkData> {
   // 指定されたディクトリ内のファイル/ディレクトリを取得
   const entries = await fsPromises.readdir(rootPath);

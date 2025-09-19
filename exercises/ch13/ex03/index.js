@@ -9,6 +9,7 @@ export function PromiseReaddir(path, options) {
         reject(err);
         return;
       }
+      //成功
       resolve(files);
     });
   });
@@ -21,6 +22,7 @@ export function PromiseStat(path, options) {
         reject(err);
         return;
       }
+      //成功
       resolve(stats);
     });
   });

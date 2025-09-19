@@ -9,7 +9,7 @@ import {
   errX,
   errY,
 } from "../wait.js";
-i3();
+i4();
 async function i1() {
   // NOTE: any で1つ Promise が解決された時に他の Promise はどうなるだろうか
   let v = 0;
@@ -69,6 +69,7 @@ async function i3() {
   }
 }
 
+// vが10を出力するように書き換えるの忘れてた！
 async function i4() {
   // NOTE: 複数の非同期処理が1つの変数に対し書き込みを行う場合、読み込みと書き込みの間に await が入るとどうなるだろうか
   let v = 0;
@@ -76,17 +77,19 @@ async function i4() {
   const p1 = async () => {
     await wait1();
     for (let i = 0; i < 5; i++) {
-      const next = v + 1;
+      // const next = v + 1;
       await wait2();
-      v = next;
+      // v = next;
+      v = v + 1; //ここ変えた
     }
   };
 
   const p2 = async () => {
     for (let i = 0; i < 5; i++) {
-      const next = v + 1;
+      // const next = v + 1;
       await wait2();
-      v = next;
+      // v = next;
+      v = v + 1; //ここ変えた
     }
   };
 

@@ -6,6 +6,9 @@ import * as fs from "fs";
 const __filename = fileURLToPath(import.meta.url); //現在のファイルの絶対パス
 const __dirname = dirname(__filename); //現在のファイルがあるディレクトリの絶対パス
 
+// バッファ以上の場合どうなるかを確かめた方がよいと思いました。
+// 繰り返し処理を使ってテストファイルを作る。
+
 describe("readLines", () => {
   it("全ての行を正しく読み込める", () => {
     const tempFilePath = join(__dirname, "testfile.txt");

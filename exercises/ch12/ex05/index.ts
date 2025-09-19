@@ -11,9 +11,10 @@ export function* readLines(filePath: string): Generator<string> {
     let bytesRead: number;
 
     while ((bytesRead = fs.readSync(fd, buffer, 0, BUFFER_SIZE, null)) > 0) {
+      // TextDecoderを使う。utf8でテストしていたら失敗する可能性がある。
       const chunk = leftover + buffer.toString("utf8", 0, bytesRead);
       const lines = chunk.split("\n");
-
+      //\nで終わってたら最後の要素は""になる
       leftover = lines.pop() ?? ""; //最後の要素は次の読み取りに使う
 
       for (const line of lines) {

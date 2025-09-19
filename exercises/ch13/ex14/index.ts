@@ -70,6 +70,7 @@ export class PromisePool {
    *
    * @returns Promise, which will be rejected if this pool has not been started.
    */
+  //ここでタスク実行しても
   async dispatch(promiseTask: () => Promise<void>): Promise<void> {
     if (!this.started) {
       return Promise.reject(
@@ -80,6 +81,7 @@ export class PromisePool {
     if (this.queue.length >= this.queueSize)
       await new Promise<void>((resolve) => {
         // 10ミリ秒ごとにキューの様子を伺う
+        // 監視ではなくて、空いてたら入れるようにしたい
         // https://qiita.com/tagotyan/items/4d4ae0059d690bf79fe3
         const interval = setInterval(() => {
           if (this.queue.length < this.queueSize) {
@@ -91,6 +93,7 @@ export class PromisePool {
 
     return new Promise<void>((resolve, reject) => {
       //queue.resolve()で解決、queue.reject()で失敗 → runTasksで実行
+      // タスクに積まれたら解決という仕様なので、改善ポイント
       this.queue.push({ promiseTask, resolve, reject });
       this._runTasks();
     });

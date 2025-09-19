@@ -1,4 +1,8 @@
 import { fibonacciSequence2 } from "./index.js";
+
+// ちゃんとフィボナッチ数列になっているかもテストするべき（どちらかというとそっちがメイン）
+// 書き換える前と同じ処理かどうかはオマケ程度
+
 function* fibonacciSequence() {
   let x = 0,
     y = 1;

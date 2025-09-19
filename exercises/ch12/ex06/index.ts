@@ -6,6 +6,7 @@ type WalkData = {
   isDirectory: boolean;
 };
 
+// ディレクトリ前提で作ってしまっている。
 export function* walk(rootPath: string): Generator<WalkData> {
   // 指定されたディクトリ内のファイル/ディレクトリを取得
   const entries = fs.readdirSync(rootPath);
@@ -15,7 +16,7 @@ export function* walk(rootPath: string): Generator<WalkData> {
     const stat = fs.statSync(fullPath); //指定したファイルやディレクトリの情報を取得
 
     if (stat.isDirectory()) {
-      yield { path: fullPath, isDirectory: true };
+      yield { path: fullPath, isDirectory: true }; //isDirectoryメソッドの値を入れてもよかったかも
       yield* walk(fullPath); // 再帰的にディレクトリを探索
     } else if (stat.isFile()) {
       yield { path: fullPath, isDirectory: false };

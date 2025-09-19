@@ -7,7 +7,7 @@ let tempDir;
 
 beforeAll(() => {
   tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "test-"));
-
+  // UTF-8では1文字1バイト
   fs.writeFileSync(path.join(tempDir, "a.txt"), "hello"); //5
   fs.writeFileSync(path.join(tempDir, "b.txt"), "world!"); //6
 });
