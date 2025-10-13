@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>大切なご連絡</title>
+    <style>
+      body {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        font-family: monospace;
+        padding: 2rem;
+      }
+      h1 {
+        color: rgb(255, 255, 255);
+        animation: blink 1s step-start infinite;
+      }
+      .box {
+        background-color: #222;
+        border: 1px solid rgb(255, 255, 255);
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>💰 おめでとうございます！ 💰</h1>
+    <p>お使いのPCの情報が完全に流出しました。</p>
+    <p>以下、流出した情報の一部となります。</p>
+    <div class="box" id="infoBox"></div>
+    <p>
+      この問題を解決するには、今すぐ
+      <a
+        href="https://www.ricoh.co.jp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="color: rgb(0, 38, 255); text-decoration: underline"
+      >
+        お問い合わせ窓口 </a
+      >に連絡してください。
+    </p>
+    <script src="./index.js"></script>
+  </body>
+</html>

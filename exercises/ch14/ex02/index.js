@@ -1,5 +1,8 @@
 export class MyArrayLike {
   // TODO
+  constructor(length) {
+    this.length = length;
+  }
 }
 
 export class MyArray extends Array {
@@ -8,4 +11,7 @@ export class MyArray extends Array {
   }
 
   // TODO
+  static get [Symbol.species]() {
+    return MyArrayLike;
+  }
 }
