@@ -43,4 +43,7 @@
 
 # プログラムを実行 (TS, Node.js >= 20)
 > npx node --loader ts-node/esm ch01/ex09/index.ts
+
+# テストケース実行 (.specの形式)
+> npm run test:browser ch15.01-03/ex01
 ```

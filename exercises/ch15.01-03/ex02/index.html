@@ -9,8 +9,10 @@
     <script type="module">
       async function loadModule() {
         try {
-          const module = await import("http://localhost:8080/index.js");
-          module.hello();
+          const { $ } = await import(
+            "https://releases.jquery.com/git/jquery-git.module.min.js"
+          );
+          $("*").css("color", "red");
         } catch (e) {
           console.error("失敗しました:", e);
         }

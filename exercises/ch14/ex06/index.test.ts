@@ -49,4 +49,16 @@ describe("createLoggingProxy", () => {
     expect(proxy.age).toBe(20);
     expect(log.length).toBe(0);
   });
+
+  it("Proxyを経由しないメソッド呼び出しは記録されない", () => {
+    const obj = {
+      hello() {
+        return "world";
+      },
+    };
+    const [proxy, log] = createLoggingProxy(obj);
+    obj.hello();
+
+    expect(log.length).toBe(0); // 記録されないことを確認
+  });
 });

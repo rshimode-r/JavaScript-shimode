@@ -1,11 +1,11 @@
 const q1 = document.querySelectorAll("nav a");
 q1.forEach((link) => {
-  console.log(`問1 : リンクテキスト: ${link.textContent}`);
+  console.log(`問1 : nav 要素内のリンク: ${link.textContent}`);
 });
-// 問1 : リンクテキスト: ホーム
-// 問1 : リンクテキスト: 商品一覧
-// 問1 : リンクテキスト: お問い合わせ
-// 問1 : リンクテキスト: 会社情報
+// 問1 : nav 要素内のリンク: ホーム
+// 問1 : nav 要素内のリンク: 商品一覧
+// 問1 : nav 要素内のリンク: お問い合わせ
+// 問1 : nav 要素内のリンク: 会社情報
 
 const q2 = document.querySelector(".product-list .product-item");
 console.log("問2 : 商品名:", q2.querySelector("h3").textContent);

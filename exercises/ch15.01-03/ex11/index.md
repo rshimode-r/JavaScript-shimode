@@ -13,3 +13,5 @@ div
 ```
 
 ## ブラウザのデバッグツール(Chromeの場合はDeveloper ToolのEvent Listners)で、btn等に登録されているイベントをそれぞれ確認しなさい。
+
+![イベントリスナー](image-1.png)

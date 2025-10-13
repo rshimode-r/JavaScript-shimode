@@ -1,6 +1,6 @@
 export function unwritableAndUnconfigurableObj() {
   const obj = { a: 1 };
-  Object.freeze(obj);
+  Object.freeze(obj); //拡張不可、プロパティ再定義不可、オブジェクトの独自プロパティを読み出し専用にする
   return obj;
 }
 

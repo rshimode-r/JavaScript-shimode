@@ -2,7 +2,6 @@ import { showTypes } from "./index.ts";
 
 describe("showTypes", () => {
   it("補間値の型名を文字列として返す", () => {
-    const result = showTypes`${"A"}`;
     expect(showTypes`${"A"}`).toBe("string");
     expect(showTypes`${{ x: 1 }}`).toBe("object");
   });
@@ -19,6 +18,11 @@ describe("showTypes", () => {
     expect(result).toBe(
       "Object: object, Null: null, Undefined: undefined, Array: array"
     );
+  });
+
+  it("function を正しく処理する", () => {
+    const result = showTypes`Function: ${() => { }}`;
+    expect(result).toBe("Function: function");
   });
 
   it("補間値がない場合、テンプレート文字列だけを返す", () => {

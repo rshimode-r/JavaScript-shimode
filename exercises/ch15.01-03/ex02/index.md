@@ -1,26 +1,15 @@
-## 手順
+## 動作手順
 
-- `module/index.js`と`page/index.html`を用意
-  index.htmlで動的インポートを実施
+- `ch15.01-03/ex02/index.html`をブラウザで開く
 
-```
-const module = await import("http://localhost:8080/index.js");
-```
+- 「動作確認」ボタンをクリックする。
+  （このタイミングでは開発者ツールのネットワークタブには`jquery-git.module.min.js`がない）
 
-- moduleとpageでそれぞれ別ポート（今回は8080 と 8000）でサーバーを立てる。
+![動作確認ボタン](./images/image-1.png)
+![ネットワーク](./images/image-3.png)
 
-```
-cd module
-(npm install -g http-server)//http-serverをインストールした
-http-server . -p 8080 --cors
+- ページ内のすべてのテキストが赤色に変わることを確認する。
+  (このタイミングでネットワークタブに`jquery-git.module.min.js`が表示され、動的インポートがされたことが確認できる)
 
----
-cd page
-npx serve -l 8000
-```
-
-- ブラウザで動作確認ボタンを押すとコンソールに`こんにちは`が出力されている。
-
-## CORS(p.464)
-
-- `--cors` をつけると サーバーがレスポンスに Access-Control-Allow-Origin: \* ヘッダーを追加
+![色が変わる](./images/image-2.png)
+![動的インポートが確認できる](./images/image-4.png)

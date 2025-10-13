@@ -12,7 +12,7 @@
           const products = document.querySelectorAll("#productList li");
           products.forEach((product) => {
             // ここにコードを書いて完成させる
-            const category = product.dataset.category;
+            const category = product.getAttribute("data-category");
             if (selectedCategory === "all" || category === selectedCategory) {
               product.style.display = "";
             } else {
