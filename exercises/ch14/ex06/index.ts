@@ -11,6 +11,7 @@ export function createLoggingProxy<T extends object>(
   // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy
   //https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/get
   const handler: ProxyHandler<T> = {
+    // プロキシのプロパティが呼び出されたとき 
     get(target, property, receiver) {
       const orig = target[property as keyof T];
       if (typeof orig === "function") {

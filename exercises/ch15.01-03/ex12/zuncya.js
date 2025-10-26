@@ -5,18 +5,20 @@ javascript:(function(func){var s=document.createElement("script");s.src="https:/
 javascript: (function (func) {
   var s = document.createElement("script");
   s.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+  // jQueryのロード完了するとfunc実行
   s.onload = function () {
     func(jQuery.noConflict(true));
   };
-  document.body.appendChild(s);
+  document.body.appendChild(s); //sをbodyに追加
 })(function ($) {
   var imgs = [
     "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRwFk59mRvaTdA_JG2TiH1ZqRw19E8xrUIsZvqqqr3ouqwMID8X1UTMxxRAKHmoxsuAequtD3NBuubbD0g8CX93BatZHNtXyNQBaAdRP_O3Z0Wgj2L410cVDfdh8AdLIK57WjdC53vZ5Q/s400/animal_dance_dog.png",
     "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNrbWzavinVfPVYA_Oyt0_qGz0ILwhTefBM1kvH8esAkvyeUcMKiU4KuMns6vwqiYuZt3icFZlDt8dFBX922UfblxGOpqBGtUs3xg8ttzWrAhD7OeYOoIlDBYInBZHPsZh1s8SZEmHOjo/s400/animal_dance_cat.png",
     "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWBmlC8AhsYmHJyJ4wDnO5ZnvioVxpQz9R8_09y2IDiCDeiilKF2eqnC459E3Z4ZeydO35MjWgVstMseI9joqQjBjNl4bFS4-6NpAZLj8cfwzpdHxqBf8wm-rJ2jsAbErM4VNq91NOhpg/s400/animal_dance_rabbit.png",
   ];
-  var target = { x: 0, y: 0 },
+  var target = { x: 0, y: 0 }, //マウスの位置
     followers = [];
+  //<img>要素を作成
   imgs.forEach(function (src, i) {
     var $img = $("<img>", {
       src: src,
@@ -26,22 +28,23 @@ javascript: (function (func) {
         top: "-50px",
         left: "-50px",
         zIndex: 99999,
-        pointerEvents: "none",
+        pointerEvents: "none", //クリックをさえぎらない
       },
-    }).appendTo("body");
-    followers.push({ el: $img, x: 0, y: 0, speed: [0.03, 0.05, 0.12, 0.2][i] });
+    }).appendTo("body"); //bodyに追加して表示させる。
+    followers.push({ el: $img, x: 0, y: 0, speed: [0.03, 0.05, 0.12, 0.2][i] }); //動きの制御
   });
+  //マウスが動くと、
   $(document).on("mousemove", function (e) {
-    target.x = e.pageX - 35;
+    target.x = e.pageX - 35; //画像サイズの半分→無いと画像の左上がマウスに一致してしまう。
     target.y = e.pageY - 35;
   });
   function animate() {
     followers.forEach(function (f) {
-      f.x += (target.x - f.x) * f.speed;
+      f.x += (target.x - f.x) * f.speed; //フレームで移動する移動量
       f.y += (target.y - f.y) * f.speed;
-      f.el.css({ left: f.x + "px", top: f.y + "px" });
+      f.el.css({ left: f.x + "px", top: f.y + "px" }); //滑らかに移動
     });
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animate); //(繰り返し実行？)
   }
   animate();
 });
