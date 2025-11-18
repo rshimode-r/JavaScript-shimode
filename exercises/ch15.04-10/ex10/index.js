@@ -16,7 +16,7 @@ canvas.height = COLS * RESOLUTION;
 let animationId = null;
 
 // NOTE: download from https://soundeffect-lab.info/sound/button/mp3/decision1.mp3
-const sound = new Audio("/ch15.04-10/ex10/decision1.mp3");
+const sound = new Audio("decision1.mp3");
 
 // ライフゲームのセル (true or false) をランダムに初期化する
 let grid = new Array(ROWS)
@@ -47,6 +47,30 @@ function updateGrid(grid) {
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する (実装してね)
+
+      let liveCount = 0;
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue; // 対象自身の時はskip
+
+          const ny = row + dy;
+          const nx = col + dx;
+
+          if (ny < 0 || ny >= ROWS || nx < 0 || nx >= COLS) continue; // 盤面の外はskip
+
+          if (grid[ny][nx]) {
+            liveCount++;
+          }
+        }
+      }
+
+      if (grid[row][col]) {
+        // 2 つまたは 3 つの生きている隣接細胞を持つ生きている細胞は、次の世代に生き続けます。
+        nextGrid[row][col] = liveCount === 2 || liveCount === 3;
+      } else {
+        // ちょうど 3 つの生きている隣接細胞を持つ死んだ細胞は、再生したかのように生きた細胞になります。
+        nextGrid[row][col] = liveCount === 3;
+      }
     }
   }
   return nextGrid;
@@ -67,9 +91,15 @@ canvas.addEventListener("click", function (evt) {
 // requestAnimationFrame によって一定間隔で更新・描画を行う
 // TODO: リフレッシュレートの高い画面では速く実行されてしまうため、以下を参考に更新頻度が常に一定となるようにしなさい
 // https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame
-function update() {
-  grid = updateGrid(grid);
-  renderGrid(grid);
+
+let last = 0;
+const interval = 100; //間隔→0.1s
+function update(t) {
+  if (t - last > interval) {
+    last = t;
+    grid = updateGrid(grid);
+    renderGrid(grid);
+  }
   animationId = requestAnimationFrame(update);
 }
 
@@ -78,7 +108,7 @@ startButton.addEventListener("click", () => {
   if (animationId) {
     return;
   }
-  update();
+  animationId = requestAnimationFrame(update);
 });
 
 pauseButton.addEventListener("click", () => {

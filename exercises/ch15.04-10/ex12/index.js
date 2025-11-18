@@ -6,25 +6,26 @@ const template = document.querySelector("#todo-template");
 // { content: "...", completed: true or false } の配列
 const todos = [];
 
-function renderTodos(todos) {
+function renderTodos(displayTodos) {
   list.innerHTML = "";
-  todos.forEach((todo, index) => {
+  displayTodos.forEach((t) => {
     const clone = template.content.cloneNode(true);
     const li = clone.querySelector("li");
     const toggle = clone.querySelector("input");
     const label = clone.querySelector("label");
     const destroy = clone.querySelector("button");
 
-    li.classList.toggle("completed", todo.completed);
+    li.classList.toggle("completed", t.completed);
     toggle.addEventListener("change", () => {
-      todo.completed = toggle.checked;
-      renderTodos(todos);
+      t.completed = toggle.checked;
+      renderTodos(getDisplayTodos());
     });
-    label.textContent = todo.content;
-    toggle.checked = todo.completed;
+    label.textContent = t.content;
+    toggle.checked = t.completed;
     destroy.addEventListener("click", () => {
-      todos.splice(index, 1);
-      renderTodos(todos);
+      const indexInTodos = todos.indexOf(t);
+      todos.splice(indexInTodos, 1);
+      renderTodos(getDisplayTodos());
     });
 
     list.appendChild(li);
@@ -40,23 +41,30 @@ form.addEventListener("submit", (e) => {
   input.value = "";
 
   todos.push({ content: todo, completed: false });
-  renderTodos(todos);
+  renderTodos(getDisplayTodos());
 });
 
 document.querySelector("#all").addEventListener("click", (e) => {
   e.preventDefault();
   window.history.pushState(null, "", "/ch15.04-10/ex12/all");
-  renderTodos(/* TODO: ここは自分で考えてみて下さい (ex11 の答えに近いので) */);
+  renderTodos(getDisplayTodos());
 });
 
 document.querySelector("#active").addEventListener("click", (e) => {
   e.preventDefault();
   window.history.pushState(null, "", "/ch15.04-10/ex12/active");
-  renderTodos(/* TODO: ここは自分で考えてみて下さい (ex11 の答えに近いので) */);
+  renderTodos(getDisplayTodos());
 });
 
 document.querySelector("#completed").addEventListener("click", (e) => {
   e.preventDefault();
   window.history.pushState(null, "", "/ch15.04-10/ex12/completed");
-  renderTodos(/* TODO: ここは自分で考えてみて下さい (ex11 の答えに近いので) */);
+  renderTodos(getDisplayTodos());
 });
+
+function getDisplayTodos() {
+  const path = location.pathname;
+  if (path.endsWith("/active")) return todos.filter((t) => !t.completed);
+  if (path.endsWith("/completed")) return todos.filter((t) => t.completed);
+  return todos;
+}
