@@ -71,6 +71,7 @@ document.getElementById("image").addEventListener("change", (event) => {
         outputData[idx] = r / kernelSum;
         outputData[idx + 1] = g / kernelSum;
         outputData[idx + 2] = b / kernelSum;
+        // 不透明
         outputData[idx + 3] = 255;
       }
     }

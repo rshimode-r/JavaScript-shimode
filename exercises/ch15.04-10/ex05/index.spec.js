@@ -37,9 +37,12 @@ test.describe("inline-circle", () => {
 
   for (const c of cases) {
     test(`属性が正しく適用されること: ${c.name}`, async ({ page }) => {
+      //要素の存在チェック
       const circle = await page.$(c.selector);
       expect(circle).not.toBeNull();
 
+      //width/height が diameter に応じて正しいか確認
+      //https://www.wheatandcat.me/entry/2023/04/09/231123
       const width = await circle.evaluate((el) =>
         parseFloat(getComputedStyle(el).width)
       );
@@ -52,13 +55,14 @@ test.describe("inline-circle", () => {
       expect(width).toBeCloseTo(expectedPx, 1);
       expect(height).toBeCloseTo(expectedPx, 1);
 
+      //背景色のチェック
       if (c.expectedBg) {
         const bg = await circle.evaluate(
           (el) => getComputedStyle(el).backgroundColor
         );
         expect(bg).toBe(c.expectedBg);
       }
-
+      //枠線
       const borderColor = await circle.evaluate(
         (el) => getComputedStyle(el).borderTopColor
       );

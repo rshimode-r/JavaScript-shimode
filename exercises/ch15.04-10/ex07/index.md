@@ -8,10 +8,14 @@
 - ブラウザ上でテキストの選択やコピーができる
 - ボタンやアニメ―ションを組み込める
 - 画像に効果をつけられる
+- ファイルサイズが小さい
 
 ### SVG のデメリット
 
 - 写真データをSVGにするのは、あまり現実的ではない
 - SVGに対応していないブラウザがある
+
+- XML形式なのでクロスサイトスクリプティングとか、その辺の攻撃を考慮する方が良い？→コンテンツ セキュリティ ポリシーを設定しよう。
+  (https://japanese.opswat.com/blog/svg-unveiled-understanding-xxe-vulnerabilities-and-defending-your-codebase)
 
 (参考 : https://www.adobe.com/jp/creativecloud/roc/blog/design/what-is-svg.html#svg%E7%94%BB%E5%83%8F%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88%E3%81%A8%E3%81%AF)

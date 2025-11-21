@@ -33,7 +33,8 @@ customElements.define(
         const text = this.input.value.trim();
         if (!text) return;
 
-        const todo = { text, completed: false };
+        //idは一意ならなんでもいい
+        const todo = { id: crypto.randomUUID(), text, completed: false };
         this.todos.push(todo);
         this.render();
         this.input.value = "";

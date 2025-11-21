@@ -80,6 +80,8 @@
       e.preventDefault();
       const target = document.querySelector(`a[name="${fragmentName}"]`);
       if (!target) return;
+      //http://developer.mozilla.org/ja/docs/Web/API/Element/scrollIntoView
+      // この辺のデフォルト値を設定するかしないかは好きな方にしたらいい
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }

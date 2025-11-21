@@ -31,6 +31,6 @@ function updateClock() {
   minuteHand.setAttribute("transform", `rotate(${minuteAngle} 50 50)`);
   secondHand.setAttribute("transform", `rotate(${secondAngle} 50 50)`);
 }
-
+//1000msで設定すると完全に時間を反映できない可能性あり。1秒未満のずれが生まれる
 setInterval(updateClock, 1000);
 updateClock();
