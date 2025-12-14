@@ -151,7 +151,7 @@ node ex01/server.js
         ["GET", "/api/tasks/{id}", getTaskHandler, authz, cors],
         ["POST", "/api/tasks", createTaskHandler, authz, cors],
         ["PATCH", "/api/tasks/{id}", patchTaskHandler, authz, cors],
-        ["DELETE", "/api/tasks/{id}", deleteTaskHandler, authz, cors],
+        ["DELETE", "/api/tasks/{id}", deleteTaskHandler, authz, cors]
       )(req, res);
     })
     .listen(3001);
@@ -332,6 +332,7 @@ Ollama を使って、生成 AI とのチャットできる Web アプリケー�
 LLM のモデルは[gemma:2B](https://ollama.com/library/gemma) 程度を用いなさい。以下のコマンドでローカル環境に LLM(gemma:2B) が起動する。
 
 ```
+ollama serve
 ollama run gemma:2b
 ```
 

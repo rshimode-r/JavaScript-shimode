@@ -1,0 +1,155 @@
+/* ===== ベース ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Maru Gothic ProN", Meiryo, system-ui, sans-serif;
+  background: #fff7ed; /* ほんのりベージュ */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== 全体 ===== */
+.container {
+  width: 100%;
+  max-width: 760px;
+  height: 85vh;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ===== ヘッダー ===== */
+.container h1 {
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  background: #fde68a; /* クマ色 */
+  border-bottom: 2px solid #fcd34d;
+}
+
+/* ===== チャット ===== */
+.chat {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fffaf0;
+}
+
+/* ===== メッセージ共通 ===== */
+.message {
+  max-width: 70%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  border-radius: 16px;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+/* ===== クマ（AI） ===== */
+.message.ai {
+  margin-right: auto;
+  background: #fef3c7;
+  color: #78350f;
+  border-bottom-left-radius: 4px;
+}
+
+/* クマのアイコン */
+.message.ai::before {
+  content: "🐻";
+  position: absolute;
+  left: -36px;
+  bottom: 0;
+  font-size: 28px;
+}
+
+/* ===== ユーザー ===== */
+.message.user {
+  margin-left: auto;
+  background: #2563eb;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+/* ===== 入力エリア ===== */
+.input-area {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  border-top: 2px solid #fde68a;
+  background: #fffbeb;
+}
+
+#prompt {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid #fcd34d;
+  outline: none;
+}
+
+#prompt:focus {
+  border-color: #f59e0b;
+}
+
+#send {
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: #f59e0b;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#send:hover {
+  background: #d97706;
+}
+
+#send:disabled {
+  background: #ccc; /* グレーに変更 */
+  color: #888; /* 文字色も薄く */
+  cursor: not-allowed; /* カーソルを禁止マークに */
+  opacity: 0.6; /* 半透明にして視覚的に無効感を追加 */
+}
+
+/* 左下にクマ立ち絵 */
+.bear-avatar {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  font-size: 64px; /* 大きめ */
+  z-index: 10;
+  pointer-events: none; /* クリックできないように */
+}
+
+/* チャット全体のパディングを少し右にずらす */
+.chat {
+  flex: 1;
+  padding: 21px 10px 10px 50px; /* 左側に余白 */
+  overflow-y: auto;
+  background: #fffaf0;
+}
+/* ===== スマホ ===== */
+@media (max-width: 600px) {
+  .container {
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .message.ai::before {
+    left: -30px;
+  }
+}

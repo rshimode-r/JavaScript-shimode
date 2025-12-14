@@ -20,7 +20,7 @@ async function serveContentsHandler(url, _req, res) {
     const filePath = path.join(
       __dirname,
       "contents",
-      reqPath === "/" ? "index.html" : path.join(...reqPath.split("/")),
+      reqPath === "/" ? "index.html" : path.join(...reqPath.split("/"))
     );
 
     const content = await fs.readFile(filePath);
@@ -44,7 +44,16 @@ async function serveContentsHandler(url, _req, res) {
 // CSP のヘッダを返すミドルウェア
 function cspMiddleware(_url, req, res) {
   // TODO: CSP ヘッダを設定する
-  // res.setHeader("Content-Security-Policy", "TODO");
+  // https://developer.mozilla.org/ja/docs/Web/HTTP/Guides/CSP#:~:text=%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82-,%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5,-%E3%83%95%E3%82%A7%E3%83%83%E3%83%81%E3%83%87%E3%82%A3
+  const hash = crypto
+    .createHash("sha256")
+    .update('alert("RICOH")')
+    .digest("base64");
+
+  res.setHeader(
+    "Content-Security-Policy",
+    `script-src 'sha256-${hash}' http://${req.headers.host}/hello.js`
+  );
   return true;
 }
 
@@ -115,7 +124,7 @@ async function main() {
     .createServer(async function (req, res) {
       await routes(["GET", "/*", serveContentsHandler, cspMiddleware])(
         req,
-        res,
+        res
       );
     })
     .listen(3000);

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>OneDrive File Upload (ex12)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OneDrive ファイルアップロード</h1>
+
+      <div class="card">
+        <label>
+          アクセストークン（Graph Explorer で取得）
+          <textarea
+            id="token"
+            placeholder="https://developer.microsoft.com/en-us/graph/graph-explorer からお願いします。"
+          ></textarea>
+        </label>
+
+        <label>
+          アップロードするファイル
+          <input type="file" id="fileInput" />
+        </label>
+
+        <button id="uploadButton" type="button">アップロード</button>
+
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
