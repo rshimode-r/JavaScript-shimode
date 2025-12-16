@@ -79,10 +79,11 @@ const NUM_WORKERS = navigator.hardwareConcurrency || 2;
 class SierpinskiCanvas {
   constructor(canvas) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d");
+    this.context = canvas.getContext("2d");
     this.workerPool = new WorkerPool(NUM_WORKERS, "worker.js");
     this.setSize();
 
+    //https://developer.mozilla.org/ja/docs/Web/API/Window/resize_event
     window.addEventListener("resize", () => this.handleResize());
     this.render();
   }
@@ -94,6 +95,7 @@ class SierpinskiCanvas {
   }
 
   handleResize() {
+    // タイムアウトがないと、何回も描画が行われる
     clearTimeout(this.resizeTimer);
     this.resizeTimer = setTimeout(() => {
       this.setSize();
@@ -113,7 +115,7 @@ class SierpinskiCanvas {
 
     Promise.all(promises).then((results) => {
       for (const r of results) {
-        this.ctx.putImageData(r.imageData, r.tile.x, r.tile.y);
+        this.context.putImageData(r.imageData, r.tile.x, r.tile.y);
       }
     });
   }
