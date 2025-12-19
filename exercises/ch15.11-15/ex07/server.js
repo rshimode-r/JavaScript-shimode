@@ -49,7 +49,7 @@ function cspMiddleware(_url, req, res) {
     .createHash("sha256")
     .update('alert("RICOH")')
     .digest("base64");
-
+  // unsafe-inlineでの対応も可能(cryptoがimportされていたので、こちらの方が問題の意図と合う)
   res.setHeader(
     "Content-Security-Policy",
     `script-src 'sha256-${hash}' http://${req.headers.host}/hello.js`
