@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // TODO: ここで API を呼び出してタスク一覧を取得し、
   // 成功したら取得したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
   try {
+    // https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch
     const response = await fetch(`api/tasks`);
     // https://developer.mozilla.org/ja/docs/Web/API/Response/ok
     if (!response.ok) {

@@ -15,6 +15,7 @@ uploadButton.addEventListener("click", async () => {
     return;
   }
 
+  // https://learn.microsoft.com/en-us/graph/use-the-api#http-methods
   const url = `https://graph.microsoft.com/v1.0/me/drive/root:/${encodeURIComponent(
     file.name
   )}:/content`;
