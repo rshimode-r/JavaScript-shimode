@@ -31,3 +31,30 @@ async function startChild() {
 }
 
 // TODO: ここに処理を書く
+let shuttingDown = false;
+async function supervise() {
+  const [code, signal] = await startChild();
+
+  if (signal) {
+    process.exit(0);
+  }
+  // 子プロセスが異常終了した場合、再起動する(0が正常終了コード)
+  if (code !== 0 && !shuttingDown) {
+    console.log("restarting...");
+    return supervise();
+  }
+}
+
+supervise();
+
+// シグナルを 2 種類以上トラップし、そのシグナルと同じシグナルを子プロセスに通知し、子プロセスがそのシグナルによって終了したことを確認し、自身も終了する
+["SIGINT", "SIGTERM"].forEach((signal) => {
+  process.on(signal, () => {
+    console.log(`parent received ${signal}`);
+    shuttingDown = true;
+
+    if (child) {
+      child.kill(signal);
+    }
+  });
+});
