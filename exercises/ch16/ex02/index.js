@@ -35,22 +35,22 @@ let shuttingDown = false;
 async function supervise() {
   const [code, signal] = await startChild();
 
-  if (signal) {
+  // 子プロセスがそのシグナルによって終了したことを確認し、自身も終了する
+  if (signal && shuttingDown) {
+    console.log(`child exited by ${signal}`);
     process.exit(0);
   }
   // 子プロセスが異常終了した場合、再起動する(0が正常終了コード)
   if (code !== 0 && !shuttingDown) {
-    console.log("restarting...");
     return supervise();
   }
 }
 
 supervise();
 
-// シグナルを 2 種類以上トラップし、そのシグナルと同じシグナルを子プロセスに通知し、子プロセスがそのシグナルによって終了したことを確認し、自身も終了する
+// シグナルを 2 種類以上トラップし、そのシグナルと同じシグナルを子プロセスに通知
 ["SIGINT", "SIGTERM"].forEach((signal) => {
   process.on(signal, () => {
-    console.log(`parent received ${signal}`);
     shuttingDown = true;
 
     if (child) {

@@ -13,5 +13,5 @@ fs.truncate(file, size, (err) => {
     console.error("エラー:", err.message);
     process.exit(1);
   }
-  console.log(`${file} を ${size} バイトに拡張しました`);
+  console.log(`${file} を ${size} バイトに変更しました`);
 });

@@ -36,3 +36,24 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log("Listening on port", port);
   });
 }
+//1.
+// curl -X GET http://localhost:8000/test/mirror
+// GET /test/mirror HTTP/1.1
+// host: localhost:8000
+// user-agent: curl/7.88.1
+// accept: */*
+
+//2.
+// curl -X POST -d "hello" http://localhost:8000/test/mirror
+// POST /test/mirror HTTP/1.1
+// host: localhost:8000
+// user-agent: curl/7.88.1
+// accept: */*
+// content-length: 5
+// content-type: application/x-www-form-urlencoded
+//
+// hello
+
+//3.
+// curl http://localhost:8000/test.txt
+// test

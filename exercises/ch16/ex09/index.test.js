@@ -29,7 +29,7 @@ describe("createApp", () => {
     });
 
     it("POST リクエストのボディがそのまま返る", async () => {
-      const payload = "テストボディ";
+      const payload = "テスト";
       const res = await request(app)
         .post("/test/mirror")
         .set("Content-Type", "text/plain")
