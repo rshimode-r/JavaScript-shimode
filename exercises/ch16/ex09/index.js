@@ -22,6 +22,7 @@ export function createApp(rootDirectory) {
   });
 
   //例: /test.txt にアクセスすると自動で rootDirectory/test.txt を返す
+  // https://expressjs.com/ja/starter/static-files.html
   app.use(express.static(rootDirectory));
   return app;
 }

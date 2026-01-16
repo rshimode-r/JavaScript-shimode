@@ -9,18 +9,21 @@ if (isMainThread) {
   }
 
   try {
+    //alphaを必ず持つ生データ→RGBA
+    // https://sharp.pixelplumbing.com/api-channel/#ensurealpha
     const image = sharp(inputPath).ensureAlpha().raw();
+    // { resolveWithObject: true }でinfoも取れる
     const { data, info } = await image.toBuffer({ resolveWithObject: true });
     const width_ = info.width;
     const height_ = info.height;
-
+    // https://nodejs.org/api/worker_threads.html#worker_threadsworkerdata
     const worker = new Worker(new URL(import.meta.url), {
       workerData: { data, width: width_, height: height_ },
     });
 
     worker.on("message", async (outputBuffer) => {
       const outputData = new Uint8ClampedArray(outputBuffer);
-      //R,G,B,A
+      //R,G,B,Aから画像データを生成
       await sharp(Buffer.from(outputData), {
         raw: { width: width_, height: height_, channels: 4 },
       }).toFile(outputPath);

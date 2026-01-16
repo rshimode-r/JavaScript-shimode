@@ -12,9 +12,9 @@ function server(rootDirectory, port) {
     let endpoint = url.parse(request.url).pathname;
     // 問題 16.10 ファイルをストリームでアップロードできる
     if (request.method === "PUT") {
+      // "/test.txt"を"test.txt"にする
       let filename = endpoint.substring(1);
       filename = path.resolve(rootDirectory, filename.replace(/\.\.\//g, ""));
-
       const dir = path.dirname(filename);
       fs.mkdirSync(dir, { recursive: true });
 

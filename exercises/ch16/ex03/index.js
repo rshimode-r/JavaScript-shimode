@@ -22,6 +22,7 @@ function encrypt64(text, key) {
   // 暗号化とBase64エンコード
   // ここを埋める
   const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+  // updateのところで16バイト単位で実行している
   const encryptedBase64 =
     cipher.update(text, "utf8", "base64") + cipher.final("base64");
 
@@ -49,6 +50,7 @@ async function writeEncrypt64(data) {
 
 async function readKey() {
   // ここを埋める（return Promise<鍵>）
+  // JSON ファイルに保存された Base64 文字列の鍵を読み込み、バイナリ（Buffer）に戻す
   const json = await fs.readFile(path.join(__dirname, "key.json"), "utf8");
   const obj = JSON.parse(json);
   return Buffer.from(obj.key, "base64");

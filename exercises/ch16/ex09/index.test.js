@@ -22,6 +22,7 @@ describe("createApp", () => {
   });
 
   describe("/test/mirror", () => {
+    //ヘッダーを検証していない
     it("GET リクエストでリクエストラインとヘッダーが返る", async () => {
       const res = await request(app).get("/test/mirror");
       expect(res.status).toBe(200);

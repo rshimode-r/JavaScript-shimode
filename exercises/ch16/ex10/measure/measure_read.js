@@ -24,6 +24,7 @@ function measureRead(filePath) {
   fs.readSync(fd, buffer, 0, stats.size, 0);
   fs.closeSync(fd);
 
+  // 参照は残っているのでメモリは解放されない
   printMemory("After fs.read");
   console.log("fs.read total bytes:", buffer.length);
 }
