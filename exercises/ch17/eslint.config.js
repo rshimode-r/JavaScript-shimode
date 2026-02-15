@@ -13,10 +13,10 @@ export default [
     },
   },
   {
-    ignores: ['ex01/format_sample.js'],
+    ignores: ['ex01/format_sample.js', 'ex09/flow/*.js'],
   },
   {
-    files: ['**/*.{js,ts}'],
+    files: ['**/*.js'],
     plugins: {
       unicorn,
       import: importPlugin,

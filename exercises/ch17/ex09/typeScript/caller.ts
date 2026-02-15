@@ -1,5 +1,5 @@
 import {
-  PriorityTask,
+  type PriorityTask,
   TaskManager,
   isLowOrCompletedTask,
   not,
