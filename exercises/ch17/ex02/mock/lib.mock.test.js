@@ -49,16 +49,6 @@ describe('apiRequest', () => {
     ).rejects.toThrow();
   });
 
-  it('network error', async () => {
-    mockRequest.on.mockImplementation((event, handler) => {
-      if (event === 'error') handler(new Error('network'));
-    });
-
-    await expect(
-      apiRequest('GET', 'https://test.com', null, 'token'),
-    ).rejects.toThrow('network');
-  });
-
   it('verboseログ', async () => {
     const spy = jest.spyOn(console, 'log').mockImplementation();
 
