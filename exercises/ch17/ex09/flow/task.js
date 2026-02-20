@@ -27,11 +27,11 @@ function isUserObject(obj: mixed): boolean {
   );
 }
 
-export class TaskManager {
-  _tasks: Array<PriorityTask> = [];
+export class TaskManager<T: Task> {
+  _tasks: Array<T> = [];
 
   // タスクを追加する
-  add(task: PriorityTask) {
+  add(task: T) {
     this._tasks.push(task);
   }
 

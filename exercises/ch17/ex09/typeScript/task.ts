@@ -11,12 +11,15 @@ type Task = {
 
 type Priority = "low" | "middle" | "high";
 
+
+//　TSは構造的型付けなので、Taskにpriorityプロパティを追加してもTask型として扱える
 export type PriorityTask = Task & {
     priority: Priority;
 };
 
 // Userオブジェクトであることを判定する
-function isUserObject(obj: any): boolean {
+// 型ガードとして機能するように、戻り値の型をbooleanからobj is Userに変更するべき
+function isUserObject(obj: any): obj is User {
     return (
         typeof obj === 'object' &&
         typeof obj['id'] === 'number' &&
@@ -49,7 +52,7 @@ export class TaskManager<T extends Task> {
 
     // 引数の関数にマッチするタスクを返す
     // 引数を省略した場合はすべてのタスクを返す
-    getTasks(predicate: ((task: T) => boolean) | undefined = undefined): T[] {
+    getTasks(predicate?: (task: T) => boolean): T[] {
         if (predicate === undefined) {
             return this._tasks;
         } else {

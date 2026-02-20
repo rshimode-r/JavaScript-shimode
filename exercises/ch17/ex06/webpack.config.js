@@ -11,7 +11,7 @@ export default {
     filename: 'main.js',
     path: path.resolve(__dirname),
   },
-  devtool: 'source-map',
+  devtool: 'source-map', //eval-source-mapが開発用では推奨らしい
   devServer: {
     static: path.resolve(__dirname),
     hot: true,
